@@ -3,6 +3,10 @@ const path = require("path");
 const crypto = require("crypto");
 const sharp = require("sharp");
 
+// Sem cache de arquivos do libvips: no Windows ele mantém os arquivos abertos
+// e impede apagar a imagem antiga ao trocar a foto (EBUSY).
+sharp.cache(false);
+
 /**
  * Serviço compartilhado de imagens.
  * Único lugar do sistema que sabe VALIDAR, OTIMIZAR e ARMAZENAR imagens.
